@@ -1,0 +1,14 @@
+<div class="flex mb-10">
+  <input
+    [(ngModel)]="newTodoText"
+    type="text"
+    class="w-full text-lg border-purple-900 border-2 p-2 rounded outline-none"
+    placeholder="Enter todo..."
+  />
+  <button
+    (click)="onCreateClick()"
+    class="p-2 bg-purple-900 hover:bg-purple-950 text-white text-xl rounded ml-3"
+  >
+    Create
+  </button>
+</div>

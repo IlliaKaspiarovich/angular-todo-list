@@ -1,1 +1,11 @@
-hello
+<app-header [titleText]="headerTitle"></app-header>
+
+<div class="max-w-3xl mx-auto mt-8">
+  <app-controls (createTodoEvent)="createTodo($event)"></app-controls>
+  <app-todo
+    *ngFor="let todo of todos"
+    [todoItem]="todo"
+    (removeTodoEvent)="removeTodo($event)"
+    (toggleTodoEvent)="toggleTodo($event)"
+  ></app-todo>
+</div>

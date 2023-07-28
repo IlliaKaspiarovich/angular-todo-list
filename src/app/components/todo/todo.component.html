@@ -1,0 +1,11 @@
+<div class="flex items-center mt-3 mb-3">
+  <input
+    type="checkbox"
+    [checked]="todoItem.isCompleted"
+    class="w-5 h-5 accent-purple-900 mr-2"
+    (change)="onCheckboxChange()"
+  >
+  <p class="text-lg">{{ todoItem.text }}</p>
+  <button (click)="onDeleteClick()" class="ml-auto bg-purple-900 text-white rounded px-2 text-lg">Delete</button>
+</div>
+<div class="border-b-[1px] border-purple-900 mx-auto"></div>
