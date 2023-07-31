@@ -1,5 +1,5 @@
-<div class="mb-6 flex">
-  <p class="ml-auto font-bold">Total: {{ all }}</p>
+<div *ngIf="all" class="mb-6 flex">
+  <p class="ml-auto text-gray-700 font-bold">Total: {{ all }}</p>
   <p class="ml-4 text-blue-700 font-bold">In Progress: {{ inProgress }}</p>
   <p class="ml-4 text-green-700 font-bold">Completed: {{ completed }}</p>
 </div>

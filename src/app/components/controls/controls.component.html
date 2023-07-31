@@ -1,5 +1,6 @@
-<div class="flex mb-5">
+<div (keydown)="onKeyDown($event)" class="flex mb-5">
   <input
+    #todoInput
     [(ngModel)]="newTodoText"
     type="text"
     class="w-full text-lg border-purple-900 border-2 p-2 rounded outline-none"
