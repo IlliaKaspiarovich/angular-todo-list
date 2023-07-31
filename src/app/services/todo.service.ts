@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Itodo } from '../models/todo';
 import localStorage from '../localStorage';
 
@@ -7,6 +8,18 @@ import localStorage from '../localStorage';
 })
 export class TodoService {
   private todos: Itodo[] = [];
+  private todosSubject = new Subject<Itodo[]>();
+
+  constructor() {
+    this.todos = localStorage.getTodos() ?? []
+  }
+
+  todos$ = this.todosSubject.asObservable();
+
+  private notifyChanges(): void {
+    this.todosSubject.next(this.todos);
+    localStorage.setTodos(this.todos);
+  }
 
   getTodos(): Itodo[] {
     return this.todos;
@@ -26,19 +39,18 @@ export class TodoService {
     };
 
     this.todos.push(newTodo);
-    localStorage.setTodos(this.todos);
+    this.notifyChanges();
   }
 
   removeTodo(todoId: Itodo['id']) {
     this.todos = this.todos.filter(({ id }) => id !== todoId);
-    localStorage.setTodos(this.todos);
+    this.notifyChanges();
   }
 
   toggleTodo(todoId: Itodo['id']) {
     this.todos = this.todos.map((todo) => {
       return todo.id === todoId ? { ...todo, isCompleted: !todo.isCompleted} : todo
     })
-
-    localStorage.setTodos(this.todos);
+    this.notifyChanges();
   }
 }
